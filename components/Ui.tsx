@@ -9,7 +9,20 @@ export const Slider=({k,label,min,max,step,v,set,fmt}:any)=>(<div><div className
 export const Pill=({u,children}:{u:number;children:any})=><span className={`rounded-full px-2.5 py-1 text-[11px] font-medium text-white bg-${status(u)}`}>{children}</span>;
 export const Head=({n,t,d}:{n?:string;t:string;d:string})=><header className="page-heading py-3 sm:py-5">{n&&<p className="mb-2 text-xs font-medium tracking-wide text-[#6b806f]">{n}</p>}<h1 className="font-serif text-3xl tracking-tight text-[#23342d] sm:text-5xl">{t}</h1><p className="mt-3 max-w-3xl text-sm leading-6 text-mute sm:text-base">{d}</p></header>;
 export const Load=()=><div className="card flex items-center gap-3 text-mute"><span className="h-2 w-2 animate-pulse rounded-full bg-gold"/>Running simulation on the server…</div>;
-export const Kpis=({a,b,upi}:any)=><section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
- <Tile label="4G utilization" value={(a.u4*100).toFixed(0)} unit="%" u={a.u4}/><Tile label="5G utilization" value={(a.u5*100).toFixed(0)} unit="%" u={a.u5}/>
- <Tile label="5G accessibility" value={(a.acc*100).toFixed(0)} unit="%" u={1-a.acc}/><Tile label="Total demand" value={a.tot.toFixed(1)} unit="Gbps" sub={`Need ${(a.tot/.8).toFixed(1)} Gbps @ 80%`}/>
- <Tile label="Added capacity" value={"+"+(a.cap4+a.cap5-b.cap4-b.cap5).toFixed(1)} unit="Gbps"/><Tile label="UPI failure (est.)" value={upi.toFixed(1)} unit="%" sub="baseline 7.11%"/></section>;
+export const Kpis=({a,b,upi,cost}:any)=>{
+ const currentCapacity=b.cap4+b.cap5,required=a.requiredCapacity,addedCapacity=a.cap4+a.cap5-currentCapacity;
+ return <section className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-4">
+  <Tile label="4G utilization" value={(a.u4*100).toFixed(1)} unit="%" sub="Target ≤80%" u={a.u4}/>
+  <Tile label="5G utilization" value={(a.u5*100).toFixed(1)} unit="%" sub="Demand / capacity; may exceed 100%" u={a.u5}/>
+  <Tile label="5G accessibility" value={(a.acc*100).toFixed(1)} unit="%" sub="Target ≥90%" u={1-a.acc}/>
+  <Tile label="Total traffic demand" value={a.tot.toFixed(2)} unit="Gbps"/>
+  <Tile label="Required capacity @ 80%" value={required.toFixed(2)} unit="Gbps"/>
+  <Tile label="Existing usable capacity" value={currentCapacity.toFixed(2)} unit="Gbps"/>
+  <Tile label="Capacity gap before plan" value={b.capacityGap.toFixed(2)} unit="Gbps"/>
+  <Tile label="Capacity added" value={`+${addedCapacity.toFixed(2)}`} unit="Gbps" sub={`${a.capacityHeadroom.toFixed(2)} Gbps headroom after plan`}/>
+  <Tile label="4G speed" value={a.sp4.toFixed(1)} unit="Mbps" sub="Target ≥3 Mbps"/>
+  <Tile label="5G speed" value={a.sp5.toFixed(1)} unit="Mbps" sub="Target ≥5 Mbps"/>
+  <Tile label="Estimated UPI failure" value={upi.toFixed(2)} unit="%" sub="Target ≤1.5%"/>
+  <Tile label="Deployment cost" value={`₹${cost.toFixed(0)}`} unit="L" sub="Project budget ₹400L"/>
+ </section>;
+};

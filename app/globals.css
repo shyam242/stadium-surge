@@ -10,6 +10,8 @@ input[type=range]{@apply w-full accent-[#237a58]}
 .btn{@apply border border-gold text-gold rounded-xl px-3 py-1.5 text-sm mr-2 mt-3 hover:bg-gold hover:text-white transition}
 button,a,input{font-family:inherit}
 .leaflet-container{background:#e8eee8;border-radius:12px}.sat{filter:brightness(.92) contrast(1.04) saturate(.92)}
+.proposed-site-marker{background:transparent;border:0}
+.proposed-site-marker span{display:block;width:14px;height:14px;border:3px solid #fff;border-radius:3px;background:#237a58;box-shadow:0 1px 5px #172b1d99;transform:rotate(45deg)}
 .leaflet-tooltip{background:#fff;color:#23342d;border:1px solid #c9d8cd;box-shadow:0 6px 20px #23342d1a}
 table{border-collapse:collapse}
 th{font-weight:500;letter-spacing:.04em}

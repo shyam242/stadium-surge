@@ -12,8 +12,11 @@ export default function StadiumMap({nodes,onSelect,selected}:{nodes:Node[];onSel
   grp.current=L.layerGroup().addTo(m);map.current=m;return()=>{m.remove();map.current=undefined}},[]);
  useEffect(()=>{const g=grp.current;if(!g)return;g.clearLayers();
   nodes.forEach(n=>{const p=ll(n.nw?n.d*(n.t=="COW"?1.2:.5):n.d,n.a),c=cl(n.u);
-   L.circle(p,{radius:n.t=="Macro"?(n.e5?170:110):n.t=="COW"?90:45,color:c,weight:1,fillColor:c,fillOpacity:.16}).addTo(g);
+   L.circle(p,{radius:n.t=="Macro"?(n.e5?170:110):n.t=="COW"?90:45,color:n.nw?"#237a58":c,weight:n.nw?2:1,dashArray:n.nw?"5 5":undefined,fillColor:n.nw?"#4d9b70":c,fillOpacity:n.nw?.12:.16}).addTo(g);
    L.polyline([CENTER,p],{color:n.bh>=10?"#5fcf8a":"#aaa",weight:n.bh>=10?2:1,dashArray:n.bh>=10?undefined:"4 4",opacity:.5}).addTo(g);
-   L.circleMarker(p,{radius:n.id==selected?10:n.nw?5:8,color:"#fff",weight:n.id==selected?3:1,fillColor:c,fillOpacity:1}).addTo(g)
+   const marker=n.nw
+    ?L.marker(p,{icon:L.divIcon({className:"proposed-site-marker",html:"<span></span>",iconSize:[18,18],iconAnchor:[9,9]})})
+    :L.circleMarker(p,{radius:n.id==selected?10:8,color:"#fff",weight:n.id==selected?3:1,fillColor:c,fillOpacity:1});
+   marker.addTo(g)
     .bindTooltip(`${n.id} · ${n.t} · load ${Math.round(n.u*100)}%`).on("click",()=>onSelect(n.id))})},[nodes,selected]);
  return <div ref={el} className="h-[520px] w-full"/>}

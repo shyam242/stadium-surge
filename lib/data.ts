@@ -9,4 +9,5 @@ export const SITES:Site[]=[
 // Innings break (21:00), last match: [4G load %, 4G Mbps, 5G Mbps|null, 5G success %]
 export const DS:Record<string,[number,number,number|null,number]>={M1:[98.8,1,32.51,35.2],M2:[98.2,.9,24.66,37.5],M3:[98.5,1,25.51,36.4],M4:[98.9,.9,null,35.1],M5:[98.7,1,28.92,35.8],M6:[60.5,8.4,null,99.2],S1:[98.3,1,null,37],S2:[98.1,1,null,37.5]};
 export const UPI=[{t:"17:00",last:1.84,normal:1.08},{t:"21:00",last:7.11,normal:1.23},{t:"22:45",last:6.82,normal:1.06},{t:"23:15",last:5.23,normal:1.22}];
+export const PREVIOUS_MATCH={attendance:65000,airtelUsers:41200};
 export const BUDGET=400; // lakh

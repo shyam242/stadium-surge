@@ -7,5 +7,5 @@ export function SimProvider({children}:{children:React.ReactNode}){
  useEffect(()=>{try{const x=localStorage.getItem("surge");if(x)setS(JSON.parse(x))}catch{}},[]);
  useEffect(()=>{try{localStorage.setItem("surge",JSON.stringify(s))}catch{};const t=setTimeout(()=>fetch("/api/simulate",{method:"POST",body:JSON.stringify(s)}).then(x=>x.json()).then(setR),120);return()=>clearTimeout(t)},[s]);
  const v={s,setS,r,sel,setSel,set:(k:string,x:number)=>setS((p:State)=>({...p,[k]:x})),tog:(t:"u5"|"fb",id:string)=>setS((p:State)=>({...p,[t]:{...p[t],[id]:!p[t][id]}})),
-  balanced:()=>setS((p:State)=>({...p,cow:4,sc:20,u5:{M4:true,M6:true,S1:true,S2:true},fb:{M4:true,M6:true,S1:true,S2:true}})),clear:()=>setS((p:State)=>({...p,cow:0,sc:0,u5:{},fb:{}})),reset:()=>setS({...BASE})};
+  balanced:()=>setS((p:State)=>({...p,cow:4,sc:10,u5:{M4:true,M6:true,S1:true,S2:true},fb:{M4:true,M6:true,S1:true,S2:true}})),clear:()=>setS((p:State)=>({...p,cow:0,sc:0,u5:{},fb:{}})),reset:()=>setS({...BASE})};
  return <Ctx.Provider value={v}>{children}</Ctx.Provider>}
