@@ -1,0 +1,8 @@
+"use client";
+import dynamic from "next/dynamic";import {useSim} from "@/lib/store";import {Head,Pill,Load} from "@/components/Ui";import {DS} from "@/lib/data";
+const M=dynamic(()=>import("@/components/StadiumMap"),{ssr:false,loading:()=><div className="h-[520px] grid place-items-center text-mute">Loading satellite map…</div>});
+export default function P(){const {r,sel,setSel}=useSim();if(!r)return <Load/>;const f=(v:number,d=1)=>v.toFixed(d);const n=r.a.nodes.find((x:any)=>x.id==sel)||r.a.nodes[0],d=DS[n.id];
+ return(<><Head n="Around the ground" t="The network beyond the stands" d="Explore the sites around HPCA Stadium. Select a marker to see its coverage, load and backhaul."/>
+ <div className="grid lg:grid-cols-3 gap-4"><div className="card lg:col-span-2"><M nodes={r.a.nodes} selected={sel} onSelect={setSel}/><p className="text-[11px] text-mute mt-2">Solid green = 10G fibre · dashed = microwave / 1G · circles = 5G/4G coverage.</p></div>
+ <div className="card self-start"><h2 className="font-serif text-xl">{n.id} · {n.t}</h2><div className="text-sm space-y-1.5 mt-2"><div>4G load <b>{f(n.u4*100,0)}%</b> · 5G load <b>{n.e5?f(n.u5*100,0)+"%":"no 5G"}</b></div><div>4G speed <b>{f(n.sp4)} Mbps</b> · 5G <b>{n.e5?f(n.sp5)+" Mbps":"–"}</b></div><div>Backhaul <b>{n.bh} Gbps</b> {n.f<1&&<Pill u={1.1}>backhaul-limited</Pill>}</div><div>Usable capacity <b>{f(n.e4+n.e5)} Gbps</b></div>{d&&<div className="text-mute">Dataset: 4G {d[0]}%, {d[1]} Mbps, 5G success {d[3]}%</div>}</div>
+ <div className="flex flex-wrap gap-1 mt-3">{r.a.nodes.map((x:any)=><button key={x.id} onClick={()=>setSel(x.id)} className={`text-xs px-2 py-0.5 rounded border ${x.id==sel?"bg-gold text-black border-gold":"border-line text-mute"}`}>{x.id}</button>)}</div></div></div></>)}

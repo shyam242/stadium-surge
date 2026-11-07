@@ -1,0 +1,41 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+html{background:#f5f7f3}
+body{overflow-x:clip;background:#f5f7f3;color:#23342d;font-family:"Aptos","Segoe UI",sans-serif}
+::selection{background:#c9e8d8;color:#183d2e}
+.card{@apply bg-white border border-line rounded-2xl p-5 shadow-[0_8px_30px_-24px_rgba(27,58,43,.35)];animation:soft-arrive .5s ease-out both;transition:border-color .25s ease,box-shadow .25s ease}
+.card:hover{border-color:#cfddcf;box-shadow:0 12px 34px -24px rgba(27,58,43,.5)}
+.page-heading{animation:soft-arrive .55s ease-out both}
+.lbl{@apply text-xs text-mute flex justify-between mt-3}
+input[type=range]{@apply w-full accent-[#237a58]}
+.btn{@apply border border-gold text-gold rounded-xl px-3 py-1.5 text-sm mr-2 mt-3 hover:bg-gold hover:text-white transition}
+button,a,input{font-family:inherit}
+.leaflet-container{background:#e8eee8;border-radius:12px}.sat{filter:brightness(.92) contrast(1.04) saturate(.92)}
+.leaflet-tooltip{background:#fff;color:#23342d;border:1px solid #c9d8cd;box-shadow:0 6px 20px #23342d1a}
+table{border-collapse:collapse}
+th{font-weight:500;letter-spacing:.04em}
+tbody tr:hover{background:#f5f8f4}
+@keyframes story-enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes soft-arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero-network{animation:soft-arrive .8s .12s ease-out both}
+.signal-ring{position:absolute;left:50%;top:50%;aspect-ratio:1;border:1px solid #dce7dc;border-radius:9999px;transform:translate(-50%,-50%);animation:ring-breathe 6s ease-in-out infinite}
+.signal-ring-outer{width:98%;animation-delay:-2s}
+.signal-ring-middle{width:76%;animation-delay:-4s}
+.signal-ring-inner{width:54%;animation-delay:-1s}
+.signal-path{fill:none;stroke:#84aa8d;stroke-width:1.5;stroke-dasharray:3 10;animation:signal-travel 14s linear infinite}
+.signal-path-delay{animation-delay:-7s}
+.network-beacon{position:absolute;display:grid;width:14px;height:14px;place-items:center;border-radius:50%;background:#337956;box-shadow:0 0 0 6px #33795618}
+.network-beacon i{width:6px;height:6px;border-radius:50%;background:#fff;animation:beacon-pulse 2.8s ease-out infinite}
+.network-beacon-one{left:18.4%;top:25.6%}
+.network-beacon-two{left:80.5%;top:72.4%}
+.network-beacon-three{left:17.2%;top:75%}
+.network-beacon-two i{animation-delay:.9s}
+.network-beacon-three i{animation-delay:1.8s}
+.network-label{position:absolute;border:1px solid #e3e9e2;border-radius:9999px;background:#fff;padding:6px 11px;color:#718078;font-size:10px;box-shadow:0 4px 14px #23342d0b}
+.network-label-one{left:8%;top:19%}
+.network-label-two{right:4%;bottom:17%}
+.network-caption{position:absolute;right:5%;top:5%;color:#718078;font-size:9px;letter-spacing:.18em}
+.network-caption span{color:#4d8062}
+@keyframes ring-breathe{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes signal-travel{to{stroke-dashoffset:-104}}
+@keyframes beacon-pulse{0%{transform:scale(.7);opacity:.5}55%{transform:scale(1.7);opacity:1}100%{transform:scale(.7);opacity:.5}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

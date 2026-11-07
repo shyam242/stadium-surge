@@ -1,0 +1,5 @@
+"use client";
+import Link from "next/link";import {usePathname} from "next/navigation";
+const T=[["/","Home"],["/3d","3D stadium"],["/dashboard","Network health"],["/scenario","Scenario"],["/deploy","Upgrades"],["/map","Map"],["/compare","Compare"],["/crowd","Crowd flow"]];
+export default function Nav(){const p=usePathname();return(<nav className="sticky top-0 z-[1000] border-b border-line/80 bg-white/90 backdrop-blur-xl"><div className="mx-auto flex max-w-[1360px] items-center gap-1 overflow-x-auto px-4 py-3">
+<Link href="/" className="mr-5 flex shrink-0 items-center gap-2.5 text-[#244b3a]"><span className="grid h-8 w-8 place-items-center rounded-xl bg-[#e7f2e9] text-sm text-gold">S</span><span className="font-serif text-lg">Stadium Surge</span></Link>{T.map(([h,l])=><Link key={h} href={h} className={`rounded-full px-3 py-2 text-sm whitespace-nowrap transition ${p==h?"bg-[#e7f2e9] font-semibold text-[#237a58]":"text-mute hover:bg-[#f1f5f0] hover:text-[#244b3a]"}`}>{l}</Link>)}</div></nav>)}

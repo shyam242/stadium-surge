@@ -1,0 +1,1 @@
+module.exports={safelist:["bg-ok","bg-warn","bg-bad"],content:["./app/**/*.{ts,tsx}","./components/**/*.{ts,tsx}"],theme:{extend:{colors:{bg:"#f5f7f3",card:"#ffffff",line:"#e3e9e2",gold:"#237a58",mute:"#718078",ok:"#39a876",warn:"#e4a43b",bad:"#e26354"},fontFamily:{serif:["Aptos Display","Segoe UI","sans-serif"]}}},plugins:[]};
