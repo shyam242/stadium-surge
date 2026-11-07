@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useRef} from "react";import type {Node} from "@/lib/engine";
-const COL=(u:number)=>u>1?"226,99,84":u>.8?"228,164,59":"57,168,118";
+const COL=(u:number)=>u>.8?"228,164,59":"57,168,118";
 type P={x:number;y:number;tx:number;ty:number;sp:number;seat:boolean;ph:number};
 export default function CrowdFlow({nodes,intensity=1,height=520}:{nodes:Node[];intensity?:number;height?:number}){
  const ref=useRef<HTMLCanvasElement>(null),nd=useRef(nodes),it=useRef(intensity);nd.current=nodes;it.current=intensity;

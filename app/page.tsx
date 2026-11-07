@@ -7,5 +7,5 @@ import ScrollExperience from "@/components/ScrollExperience";
 export default function Home() {
   const { r } = useSim();
   if (!r) return <Load />;
-  return <ScrollExperience nodes={r.a.nodes} />;
+  return <ScrollExperience nodes={r.b.nodes} />;
 }
